@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Swift 枚举高阶用法（基础篇） | coderZhao&#39;s Den</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="我是天韡，一名 iOS 开发工程师，追求卓越，继往开来。">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Swift 枚举高阶用法（基础篇） | coderZhao&#39;s Den">
+    <meta name="twitter:description" content="我是天韡，一名 iOS 开发工程师，追求卓越，继往开来。">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Swift 枚举高阶用法（基础篇） | coderZhao&#39;s Den">
+    <meta property="og:description" content="我是天韡，一名 iOS 开发工程师，追求卓越，继往开来。">
+
+    
+    <meta name="author" content="zhao.tianwei">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar-small.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="coderZhao&#39;s Den" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://yoursite.com/2017/11/08/枚举高阶用法（基础篇）/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 coderZhao&#39;s Den 的主页"><img src="/images/avatar.jpg" width="80" alt="coderZhao&#39;s Den logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for coderZhao&#39;s Den">coderZhao&#39;s Den</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">人如其名</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">我是天韡，一名 iOS 开发工程师，追求卓越，继往开来。</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">Blog</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/monniya" title="GitHub" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  <li class="navigation__item">
+    <a href="https://twitter.com/onlymonniya" title="Twitter" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-11-08T13:10:46.055Z" class="post-list__meta--date date">2017-11-08</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">Swift 枚举高阶用法（基础篇）</h1>
+  </header>
+
+  <section class="post">
+    <h3 id="Swift-枚举定义和特点"><a href="#Swift-枚举定义和特点" class="headerlink" title="Swift 枚举定义和特点"></a>Swift 枚举定义和特点</h3><p>Swift 中枚举使用更加灵活和便捷，枚举是用来表示值的“类型”，构建一个枚举，本质上是创建了一种全新的数据类型，用于管理一组有限的值的集合.而且可以具有附加值。通过内嵌(nesting),方法(method),关联值(associated values)和模式匹配(pattern matching),枚举可以分层次地定义任何有组织的数据。<br>其特点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1.具有面向对象的特征</div><div class="line">2.支持计算属性</div><div class="line">3.支持实例方法和类型方法</div><div class="line">4.允许枚举遵守指定协议来提供标准的功能1.具有面向对象的特征</div></pre></td></tr></table></figure></p>
+<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><h4 id="定义基本的枚举类型"><a href="#定义基本的枚举类型" class="headerlink" title="定义基本的枚举类型"></a>定义基本的枚举类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">enum Season &#123;</div><div class="line">	case Spring </div><div class="line">	case  Summer   </div><div class="line">	case  Fall</div><div class="line">	case  Winter</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>构建了一个季节的枚举类型，我们可以使用多种模式匹配结构来获取到 Season 的枚举值，或者基于特定情况而执行的操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let season = Season.Spring</div><div class="line"></div><div class="line">//switch 按情况处理</div><div class="line">switch season &#123;</div><div class="line">	case .Spring: print(&quot;春天来了&quot;)</div><div class="line">	default: break</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 明确的case情况</div><div class="line">if case .Spring = season&#123;</div><div class="line">    print(&quot;春天来了&quot;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">if season = .Spring&#123;print(&quot;春天来了&quot;)&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="枚举值"><a href="#枚举值" class="headerlink" title="枚举值"></a>枚举值</h4><p>我们可以为 enum 的每一个 case 分配一个具体的值，在 OC 中我们只能为枚举分配整型值，而在 Swift 中则提供了更多的灵活性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">enum Season: Int &#123;</div><div class="line">	case Spring  = 0</div><div class="line">	case  Summer = 1   </div><div class="line">	case  Fall = 2</div><div class="line">	case  Winter = 3</div><div class="line">&#125;</div><div class="line"></div><div class="line">enum Season: String &#123;</div><div class="line">	case Spring  = &quot;春天&quot;</div><div class="line">	case  Summer = “夏天”</div><div class="line">	case  Fall = “秋天”</div><div class="line">	case  Winter = “冬天”</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>Swift 枚举中支持以下四种关联值类型:</p>
+<pre><code>- 整型(Integer)
+- 浮点数(Float Point)
+- 字符串(String)
+- 布尔类型(Boolean)
+</code></pre><p>若你要读取枚举的值，可以通过 rawValue 属性来实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let season = Season.Spring</div><div class="line">print(season.rawValue)</div></pre></td></tr></table></figure></p>
+<p>不过某种情形下，你可能想要通过一个已有的raw value来创建一个enum case。这种情况下，枚举提供了一个指定构造方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">enum Season: Int &#123;</div><div class="line">	case Spring  = 0</div><div class="line">	case  Summer = 1   </div><div class="line">	case  Fall = 2</div><div class="line">	case  Winter = 3</div><div class="line">&#125;</div><div class="line"></div><div class="line">let season = Season(rawValue: 1)</div></pre></td></tr></table></figure></p>
+<p>使用rawValue构造器，切记它是一个可失败构造器(failable initializer)。换言之，构造方法返回值为可选类型值,因为有时候传入的值可能与任意一个case都不匹配。比如Season(rawValue:33)。</p>
+<h4 id="嵌套枚举"><a href="#嵌套枚举" class="headerlink" title="嵌套枚举"></a>嵌套枚举</h4><p>这里举一个常见的例子，以电商项目中的用户角色为例，可以分为卖家、买家和游客，游客是不能参与买卖等功能的，所以可以这样定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">enum role &#123;</div><div class="line">	enum Behavior &#123;</div><div class="line">		case Buy</div><div class="line">		case Sale</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	case Merchant</div><div class="line">	case Buyer</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 你可以通过层级结构来描述角色允许访问的项目条</div><div class="line"></div><div class="line">let role = Role.Merchant</div><div class="line">let behavior = Role.Behavior.Sale</div></pre></td></tr></table></figure></p>
+<h4 id="包含枚举"><a href="#包含枚举" class="headerlink" title="包含枚举"></a>包含枚举</h4><p>同样地，你也能够在structs或classes中内嵌枚举。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">struct Character &#123;</div><div class="line">   enum CharacterType &#123;</div><div class="line">    case Merchant</div><div class="line">    case Buyer</div><div class="line">  &#125;</div><div class="line">  enum Behavior &#123;</div><div class="line">    case Buy</div><div class="line">    case Sale</div><div class="line">  &#125;</div><div class="line">  let type: CharacterType</div><div class="line">  let behavior: Weapon</div><div class="line">&#125;</div><div class="line"></div><div class="line">let Merchant = Character(type: .Merchant, behavior: .Sale)</div></pre></td></tr></table></figure></p>
+<h3 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h3><p>关联值是将额外信息附加到enum case中的一种极好的方式，比如一个电商项目，肯定存在买和卖两周交易模式，除此之外每手交易还要制定明确的商品名称和交易数量以及价格，枚举关联值为我们提供了一种更直白简约的解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">enum Trade &#123;</div><div class="line">    case Buy(stock: String, amount: Int, price: float)</div><div class="line">    case Sell(stock: String, amount: Int, price: float)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let trade = Trade.Buy(stock: &quot;Mac pro2017&quot;, amount: 1, price: 18888)</div><div class="line">if case let Trade.Buy(stock, amount, price) = trade &#123;</div><div class="line">    print(&quot;buy \(amount) of \(stock),price is \(price)&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>关联值不需要附加标签的声明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">enum Trade &#123;</div><div class="line">   case Buy(String, Int)</div><div class="line">   case Sell(String, Int)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>倘若你添加了，那么，每当创建枚举用例时，你都需要将这些标签标示出来。</p>
+<h4 id="元组参数"><a href="#元组参数" class="headerlink" title="元组参数"></a>元组参数</h4><p>元组允许你把不同类型的数据结合到一起。它是可变的，尽管看起来像序列，但是它不是，因为不能直接遍历所有内容。<br>Swift 枚举关联值内部其实就是一个元组，所以可以这么处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">enum Trade &#123;</div><div class="line">    case Buy(stock: String, amount: Int, price: float)</div><div class="line">    case Sell(stock: String, amount: Int, price: float)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let tp = (stock: &quot;TSLA&quot;, amount: 100, price: 100)</div><div class="line">let trade = Trade.Sell(tp)</div></pre></td></tr></table></figure></p>
+<p>更深入一点，拷贝个例子：<br>语法允许您将元组当作一个简单的数据结构,稍后元组将自动转换到高级类型，就比如enum case。想象一个应用程序可以让用户来配置电脑:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">typealias Config = (RAM: Int, CPU: String, GPU: String)</div><div class="line"></div><div class="line">// Each of these takes a config and returns an updated config</div><div class="line">func selectRAM(_ config: Config) -&gt; Config &#123;return (RAM: 32, CPU: config.CPU, GPU: config.GPU)&#125;</div><div class="line">func selectCPU(_ config: Config) -&gt; Config &#123;return (RAM: config.RAM, CPU: &quot;3.2GHZ&quot;, GPU: config.GPU)&#125;</div><div class="line">func selectGPU(_ config: Config) -&gt; Config &#123;return (RAM: config.RAM, CPU: &quot;3.2GHZ&quot;, GPU: &quot;NVidia&quot;)&#125;</div><div class="line"></div><div class="line">enum Desktop &#123;</div><div class="line">   case Cube(Config)</div><div class="line">   case Tower(Config)</div><div class="line">   case Rack(Config)</div><div class="line">&#125;</div><div class="line"></div><div class="line">let aTower = Desktop.Tower(selectGPU(selectCPU(selectRAM((0, &quot;&quot;, &quot;&quot;) as Config))))</div></pre></td></tr></table></figure></p>
+<p>配置的每个步骤均通过递交元组到enum中进行内容更新。</p>
+<h3 id="方法和属性"><a href="#方法和属性" class="headerlink" title="方法和属性"></a>方法和属性</h3><h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>在 enum 中可以定义方法，继续 copy 例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">enum Wearable &#123;</div><div class="line">    enum Weight: Int &#123;</div><div class="line">        case Light = 1</div><div class="line">    &#125;</div><div class="line">    enum Armor: Int &#123;</div><div class="line">	    case Light = 2</div><div class="line">    &#125;</div><div class="line">    case Helmet(weight: Weight, armor: Armor)</div><div class="line">        func attributes() -&gt; (weight: Int, armor: Int) &#123;</div><div class="line">       switch self &#123;</div><div class="line">	         case .Helmet(let w, let a): return (weight: w.rawValue * 2, armor: w.rawValue * 4)</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">let woodenHelmetProps = Wearable.Helmet(weight: .Light, armor: .Light).attributes()</div><div class="line">print (woodenHelmetProps)</div><div class="line">// prints &quot;(2, 4)&quot;</div></pre></td></tr></table></figure></p>
+<p>枚举中的方法为每一个enum case而“生”。所以倘若想要在特定情况执行特定代码的话，你需要分支处理或采用switch语句来明确正确的代码路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">enum Device &#123; </div><div class="line">    case iPad, iPhone, AppleTV, AppleWatch </div><div class="line">    func introduced() -&gt; String &#123;</div><div class="line">       switch self &#123;</div><div class="line">	     case AppleTV: return &quot;\(self) was introduced 2006&quot;</div><div class="line">	     case iPhone: return &quot;\(self) was introduced 2007&quot;</div><div class="line">	     case iPad: return &quot;\(self) was introduced 2010&quot;</div><div class="line">	     case AppleWatch: return &quot;\(self) was introduced 2014&quot;</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">print (Device.iPhone.introduced())</div><div class="line">// prints: &quot;iPhone was introduced 2007&quot;</div></pre></td></tr></table></figure></p>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>增加一个存储属性到枚举中不被允许，但你依然能够创建计算属性。当然，计算属性的内容都是建立在枚举值下或者枚举关联值得到的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">enum Device &#123;</div><div class="line">  case iPad, iPhone</div><div class="line">  var year: Int &#123;</div><div class="line">    switch self &#123;</div><div class="line">	    case iPhone: return 2007</div><div class="line">	    case iPad: return 2010</div><div class="line">     &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><p>为枚举创建一些静态方法(static methods)。换言之通过一个非枚举类型来创建一个枚举。在这个示例中,我们需要考虑用户有时将苹果设备叫错的情况(比如AppleWatch叫成iWatch)，需要返回一个合适的名称。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">enum Device &#123; </div><div class="line">    case AppleWatch </div><div class="line">    static func fromSlang(term: String) -&gt; Device? &#123;</div><div class="line">      if term == &quot;iWatch&quot; &#123;</div><div class="line">	  return .AppleWatch</div><div class="line">      &#125;</div><div class="line">      return nil</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">print (Device.fromSlang(&quot;iWatch&quot;))</div></pre></td></tr></table></figure></p>
+<h4 id="可变方法"><a href="#可变方法" class="headerlink" title="可变方法"></a>可变方法</h4><p>方法可以声明为mutating。这样就允许改变隐藏参数self的case值了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">enum TriStateSwitch &#123;</div><div class="line">    case Off, Low, High</div><div class="line">    mutating func next() &#123;</div><div class="line">	switch self &#123;</div><div class="line">	case Off:</div><div class="line">	    self = Low</div><div class="line">	case Low:</div><div class="line">	    self = High</div><div class="line">	case High:</div><div class="line">	    self = Off</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">var ovenLight = TriStateSwitch.Low</div><div class="line">ovenLight.next()</div><div class="line">// ovenLight 现在等于.On</div><div class="line">ovenLight.next()</div><div class="line">// ovenLight 现在等于.Off</div></pre></td></tr></table></figure></p>
+<p>到这里， Swift 枚举的基础就暂时告一段落，在我看来，项目开发中使用强大的枚举，可以更加直观的展现代码结构层级，提升代码的阅读性。</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/11/06/Hexo 搭建/" title="Hexo 开篇">Hexo 开篇</a></h2>
+                <p class="excerpt">
+                
+                写在开始最近重新翻了一下喵神和sunnyxx的博客，文章依旧精彩，但是深深吸引我的还是 Hexo 博客的风格。这就是我要的！所以，由于近来公司业务舒缓，有大把的时间自我提升，所以打算将自己寄居在各个平台的博客文章、tips、问答等等逐步迁移到 Hexo 上来，专一的维护一个平台。
+Hexo安装 nv
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-11-06T12:46:23.940Z" class="post-list__meta--date date">2017-11-06</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2017/11/06/Hexo 搭建/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2017 zhao.tianwei - 本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+       
+    </span>
+    <span class="footer__copyright">
+             - 基于 <a href="http://hexo.io">Hexo</a> 搭建，使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题，由<a href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>
